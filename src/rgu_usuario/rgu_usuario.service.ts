@@ -15,7 +15,7 @@ export class RguUsuarioService {
     }
 
     async findOne(RGU_ID: number): Promise<Usuario> {
-        return this.usuarioRepository.findOneBy({RGU_ID});
+        return this.usuarioRepository.findOneBy({ RGU_ID});
     }
 
     async create(usuarioData: Partial<Usuario>): Promise<Usuario> {
@@ -25,10 +25,10 @@ export class RguUsuarioService {
 
     async update(RGU_ID: number, usuarioData: Partial<Usuario>): Promise<Usuario> {
         await this.usuarioRepository.update(RGU_ID, usuarioData);
-        return this.usuarioRepository.findOneBy({RGU_ID});
+        return this.usuarioRepository.findOneBy({ RGU_ID });
     }
 
-    async remove(id: number): Promise<void> {
-        await this.usuarioRepository.delete(id);
+    async remove(RGU_ID: number): Promise<void> {
+        await this.usuarioRepository.delete(RGU_ID);
     }
 }

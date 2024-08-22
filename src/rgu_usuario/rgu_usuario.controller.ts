@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Res } from '@nestjs/common';
 import { RguUsuarioService } from './rgu_usuario.service';
 import { Usuario } from 'src/entities/rgu_usuario.entity';
 
@@ -11,23 +11,23 @@ export class RguUsuarioController {
         return this.rguUsuarioService.findAll();
     }
 
-    // @Get(':id')
-    // async findOne(@Param('id') id: string): Promise<Usuario> {
-    //     return this.rguUsuarioService.findOne(id);
-    // }
+    @Get(':RGU_ID')
+    async findOne(@Param('RGU_ID') RGU_ID: number): Promise<Usuario> {
+        return this.rguUsuarioService.findOne(RGU_ID);
+    }
 
     @Post()
     async create(@Body() usuarioData: Partial<Usuario>): Promise<Usuario> {
         return this.rguUsuarioService.create(usuarioData);
     }
 
-    // @Put(':id')
-    // async update(@Param('id') id: string, @Body() usuarioData: Partial<Usuario>): Promise<Usuario> {
-    //     return this.rguUsuarioService.update(id, usuarioData);
-    // }
+    @Put(':RGU_ID')
+    async update(@Param('RGU_ID') RGU_ID: number, @Body() usuarioData: Partial<Usuario>): Promise<Usuario> {
+        return this.rguUsuarioService.update(RGU_ID, usuarioData);
+    }
 
-    // @Delete(':id')
-    // async remove(@Param('id') id: string): Promise<void> {
-    //     return this.rguUsuarioService.remove(id);
-    // }
+    @Delete(':RGU_ID')
+    async remove(@Param('RGU_ID') RGU_ID: number): Promise<void> {
+        return this.rguUsuarioService.remove(RGU_ID);
+    }
 }
