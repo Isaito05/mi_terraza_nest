@@ -15,7 +15,8 @@ import { RguUsuarioService } from 'src/rgu_usuario/rgu_usuario.service';
             password: '',
             database: 'mi_terraza',
             entities: [__dirname + '/../**/*.entity.{js,ts}'],
-            synchronize: true, // Solo para desarrollo, no usar en producción
+            synchronize: false, // Solo para desarrollo, no usar en producción
+            
             autoLoadEntities: true
         }),
     ],

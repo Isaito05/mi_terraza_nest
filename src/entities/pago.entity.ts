@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Usuario } from './rgu_usuario.entity';
 
 @Entity('t_pago') // Nombre de la tabla en la base de datos
 export class Pago {
@@ -19,4 +20,8 @@ export class Pago {
 
     @Column({ type: 'int', default: 1 })
     PAGO_ESTADO: number;
+
+    @ManyToOne(() => Usuario) // Define la relación ManyToOne
+    @JoinColumn({ name: 'PAGO_RGU_ID' }) // Especifica la columna que actúa como clave foránea
+    rguUsuario: Usuario; // Propiedad que referencia a la entidad relacionada
 }
