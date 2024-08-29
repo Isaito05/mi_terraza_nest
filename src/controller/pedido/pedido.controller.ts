@@ -10,4 +10,24 @@ export class PedidoController {
     async findAll(): Promise<Pedido[]> {
         return this.PedidoService.findAll();//hola 
     }
+
+    @Get(':PED_ID')
+    async findOne(@Param('PED_ID') PED_ID: number): Promise<Pedido> {
+        return this.PedidoService.findOne(PED_ID);
+    }
+
+    @Post()
+    async create(@Body() pedidoData: Partial<Pedido>): Promise<Pedido> {
+        return this.PedidoService.create(pedidoData);
+    }
+
+    @Put(':PED_ID')
+    async update(@Param('PED_ID') PED_ID: number, @Body() pedidoData: Partial<Pedido>): Promise<Pedido> {
+        return this.PedidoService.update(PED_ID, pedidoData);
+    }
+
+    @Delete(':PED_ID')
+    async remove(@Param('PED_ID') PED_ID: number): Promise<void> {
+        return this.PedidoService.remove(PED_ID);
+    }
 }

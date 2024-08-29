@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Usuario } from 'src/entities/rgu_usuario.entity';
-import { RguUsuarioController } from 'src/rgu_usuario/rgu_usuario.controller';
-import { RguUsuarioService } from 'src/rgu_usuario/rgu_usuario.service';
+import { RguUsuarioController } from 'src/controller/usuario/rgu_usuario.controller';
+import { RguUsuarioService } from 'src/service/usuario/rgu_usuario.service';
 
 @Module({
     imports: [

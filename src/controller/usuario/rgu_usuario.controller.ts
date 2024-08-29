@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, Res } from '@nestjs/common';
-import { RguUsuarioService } from './rgu_usuario.service';
+import { RguUsuarioService } from '../../service/usuario/rgu_usuario.service';
 import { Usuario } from 'src/entities/rgu_usuario.entity';
 
 @Controller('rgu-usuario')

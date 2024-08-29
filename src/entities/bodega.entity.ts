@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn,ManyToOne, JoinColumn } from 'typeorm';
 
-import { Proveedor } from './proveedor.entity'; // Ase
+import { Proprov } from './proprov.entity'; // Ase
 
 @Entity('t_bodega') // Nombre de la tabla en la base de datos
 export class Bodega {
@@ -16,9 +16,9 @@ export class Bodega {
     @Column({ type: 'int' })
     BOD_PROPROV_ID : number;
 
-    @ManyToOne(() => Proveedor) // Define la relación ManyToOne
+    @ManyToOne(() => Proprov) // Define la relación ManyToOne
     @JoinColumn({ name: 'BOD_PROPROV_ID' }) // Especifica la columna que actúa como clave foránea
-    proveedor: Proveedor; // Propiedad que referencia a la entidad relacionada
+    proprov: Proprov; // Propiedad que referencia a la entidad relacionada
 
     @Column({ type: 'int', default: 1 })
     BOD_ESTADOE: number;
