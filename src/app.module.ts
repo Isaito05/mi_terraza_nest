@@ -9,11 +9,12 @@ import { BodegaModule } from './modules/bodega/bodega.module';
 import { ProveedorModule } from './modules/proveedor/proveedor.module';
 import { ProprovModule } from './modules/proprov/proprov.module';
 import { ProdventaModule } from './modules/prodventa/prodventa.module';
+import { FilesModule } from './files/files.module';
 
 
 
 @Module({
-  imports: [ConexionModule, RguUsuarioModule, PagoModule, PedidoModule, BodegaModule, ProveedorModule, ProprovModule, ProdventaModule],
+  imports: [ConexionModule, RguUsuarioModule, PagoModule, PedidoModule, BodegaModule, ProveedorModule, ProprovModule, ProdventaModule, FilesModule],
   controllers: [AppController],
   providers: [AppService],
 })
