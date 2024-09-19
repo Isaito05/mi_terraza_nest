@@ -10,5 +10,6 @@ import { RguUsuarioService } from 'src/service/usuario/rgu_usuario.service';
     ],
     controllers: [RguUsuarioController],
     providers: [RguUsuarioService],
+    exports: [RguUsuarioService]
 })
 export class RguUsuarioModule { }
