@@ -1,9 +1,5 @@
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
-import { RguUsuarioController } from 'src/controller/usuario/rgu_usuario.controller';
-import { RguUsuarioService } from 'src/service/usuario/rgu_usuario.service';
 
 @Module({
     imports: [

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConexionModule } from './conexion/src/conexion.module';
+import { ConexionModule } from './conexion/conexion.module';
 import { RguUsuarioModule } from './modules/rgu_usuario/rgu_usuario.module';
 import { PagoModule } from './modules/pago/pago.module';
 import { PedidoModule} from './modules/pedido/pedido.module'

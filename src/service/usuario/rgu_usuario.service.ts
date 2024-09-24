@@ -51,6 +51,6 @@ export class RguUsuarioService {
         return this.usuarioRepository.findOne({
           where: { RGU_CORREO },
         });
-      }
+    }
     
 }
