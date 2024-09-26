@@ -37,4 +37,7 @@ export class Usuario {
 
     @Column({ type: 'int', default: 1 })
     RGU_ESTADO: number;
+
+    @Column({ nullable: true }) // Campo para almacenar el token
+    resetToken?: string;
 }
