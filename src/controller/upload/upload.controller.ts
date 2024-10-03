@@ -27,7 +27,7 @@ export class UploadController {
     @Post('file')
     uploadFile(@UploadedFile() file : Express.Multer.File){
         console.log(file);  // Verifica si el archivo llega correctamente
-        const filePath = `http://localhost:3000/uploads/${file.filename}`;
+        const filePath = `/uploads/${file.filename}`;
         return {
             mesg: file ? `Archivo ${file.filename} cargado correctamente` : 'No se cargó ningún archivo',
             filePath: filePath
@@ -47,6 +47,4 @@ export class UploadController {
         res.sendFile(filePath);
         });
     }
-
-
 }

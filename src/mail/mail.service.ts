@@ -7,18 +7,7 @@ dotenv.config();
 @Injectable()
 export class MailService {
   private transporter: nodemailer.Transporter;
-
-//   constructor() {
-//     this.transporter = nodemailer.createTransport({
-//         host: process.env.MAILTRAP_HOST,
-//         port: parseInt(process.env.MAILTRAP_PORT),
-//         auth: {
-//           user: process.env.MAILTRAP_USER,
-//           pass: process.env.MAILTRAP_PASS,
-//         },
-//       });
-
-constructor() {
+  constructor() {
     this.transporter = nodemailer.createTransport({
       service: 'gmail', // Usa el servicio de Gmail
       auth: {
@@ -30,7 +19,7 @@ constructor() {
     console.log('Password:', process.env.PASSWORD);
   }
       
-  async sendResetEmail(to: string, token: string) {
+  async sendResetEmail(to: string, token: string, user: string) {
     const mailOptions = {
         from: 'noreply@example.com', // Cambia esto por tu email
         to,
@@ -63,12 +52,18 @@ constructor() {
                     }
                     .button {
                         display: inline-block;
-                        background-color: #007bff;
-                        color: #ffffff;
-                        padding: 10px 20px;
+                        background-color: #FEA116;
+                        color: #f8f9fa !important;
+                        padding: 0.5rem 1rem;
                         border-radius: 5px;
                         text-decoration: none;
                         margin-top: 10px;
+                        cursor: pointer;
+                        font-weight: 600;
+                        border-color: hsla(0, 0%, 100%, .2);
+                    }
+                    .button:hover {
+                        background-color: #feaf39;
                     }
                     .footer {
                         margin-top: 20px;
@@ -80,33 +75,22 @@ constructor() {
             <body>
                 <div class="container">
                     <h1>Restablecimiento de Contraseña</h1>
-                    <p>Hola,</p>
-                    <p>Hemos recibido una solicitud para restablecer tu contraseña. Haz clic en el botón de abajo para restablecerla:</p>
+                    <p>Hola,<strong style="font-size: 1.2em;"> ${user}!</strong></p>
+                    <p>Recibimos una solicitud de tu parte para restablecer la contraseña de tu cuenta.</p>
+                    <p>Para restablecer tu contraseña, haz clic en el botón de abajo. Se abrirá una página donde podrás crear una nueva contraseña.</p>
                     <a href="http://localhost:4200/reset-password?token=${token}" class="button">Restablecer Contraseña</a>
-                    <p>Si no solicitaste este cambio, simplemente ignora este mensaje.</p>
-                    <p>¡Gracias!</p>
-                    <div class="footer">
+                    <p><strong><em>Si no solicitaste este cambio, por favor verifica que nadie más esté intentando acceder a tu cuenta.</em></strong> Si es así, te recomendamos que cambies tu contraseña de inmediato.</p>
+                    <p style="margin-top: 69px !important;"><strong><em>Si tienes problemas, no dudes en contactarnos en </em></strong<a href="mailto:support@example.com">support@example.com</a>.</p>
+                    <p>¡Estamos aquí para ayudarte! Gracias por ser parte de nuestra comunidad.</p></br>
+                    <div class="footer" style="margin-top: 40px !important;">
                         <p>Este es un mensaje automático, por favor no respondas.</p>
                     </div>
                 </div>
             </body>
             </html>
+
         `,
     };
     await this.transporter.sendMail(mailOptions);
   }
-  
-
-//   async sendResetEmail(to: string, token: string) {
-//     const mailOptions = {
-//       from: 'noreply@example.com', // Cambia esto por tu email
-//       to,
-//       subject: 'Restablecimiento de contraseña',
-//     //   text: `Haga clic en el siguiente enlace para restablecer su contraseña: http://localhost:3000/reset-password?token=${token}`,
-//       // Puedes usar HTML si prefieres:
-//      html: `<a href="http://localhost:3000/forgot-password?token=${token}">Restablecer contraseña</a>`,
-//     };
-
-//     await this.transporter.sendMail(mailOptions);
-//   }
 }
