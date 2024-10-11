@@ -40,4 +40,7 @@ export class Usuario {
 
     @Column({ nullable: true }) // Campo para almacenar el token
     resetToken?: string;
+
+    @Column({ type: 'varchar', nullable: true })
+    RGU_IMG_PROFILE: string;
 }

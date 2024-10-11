@@ -15,6 +15,7 @@ import { AuthController } from './controller/auth/auth.controller';
 import { AuthService } from './service/auth/auth.service';
 import { MailService } from './mail/mail.service';
 import { MailModule } from './mail/mail.module';
+import { UploadController } from './controller/upload/upload.controller';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { MailModule } from './mail/mail.module';
     AuthModule,
     MailModule,
   ],
-  controllers: [ForgotPasswordController, AppController],
+  controllers: [ForgotPasswordController, UploadController, AppController],
   providers: [AppService, MailService],
 })
 export class AppModule {}

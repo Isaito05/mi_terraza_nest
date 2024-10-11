@@ -33,7 +33,8 @@ export class AuthService {
       sub: user.id, 
       nombre: user.RGU_NOMBRES, 
       rol: user.RGU_ROL,
-      apellido: user.RGU_APELLIDOS 
+      apellido: user.RGU_APELLIDOS,
+      i_perfil: user.RGU_IMG_PROFILE
     };
 
     return {
