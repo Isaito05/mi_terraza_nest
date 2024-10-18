@@ -43,4 +43,7 @@ export class Usuario {
 
     @Column({ type: 'varchar', nullable: true })
     RGU_IMG_PROFILE: string;
+
+    @Column({ type: 'date' })
+    RGU_FCH_REGISTRO: Date;
 }
