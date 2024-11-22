@@ -35,7 +35,8 @@ export class AuthService {
       nombre: user.RGU_NOMBRES, 
       rol: user.RGU_ROL,
       apellido: user.RGU_APELLIDOS,
-      i_perfil: user.RGU_IMG_PROFILE
+      i_perfil: user.RGU_IMG_PROFILE,
+      direccion: user.RGU_DIRECCION
     };
 
     return {
