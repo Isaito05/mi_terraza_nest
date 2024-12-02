@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Prodventa } from 'src/entities/prodventa.entity';
 
 @Injectable()
@@ -14,8 +14,9 @@ export class ProdventaService {
         return this.ProdventaRepository.find();
     }
 
-    async findOne(PROD_VENTA_ID: number): Promise<Prodventa> {
-        return this.ProdventaRepository.findOneBy({ PROD_VENTA_ID});
+    async findOne(PROD_VENTA_ID: number): Promise<Prodventa[]> {
+        const producto = await this.ProdventaRepository.findOneBy({ PROD_VENTA_ID});
+        return producto ? [producto] : [];
     }
 
     async create(ProdventaData: Partial<Prodventa>): Promise<Prodventa> {

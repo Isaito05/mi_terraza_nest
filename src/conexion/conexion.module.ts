@@ -12,7 +12,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
             database: 'mi_terraza',
             entities: [__dirname + '/../**/*.entity.{js,ts}'],
             synchronize: false, // Solo para desarrollo, no usar en producción
-            
             autoLoadEntities: true
         }),
     ],

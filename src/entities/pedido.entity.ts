@@ -41,4 +41,7 @@ export class Pedido {
 
     @Column({ type: 'varchar', length: 100 })
     PED_MET_PAGO: number;
+
+    @Column({ type: 'tinyint', default: 1 }) // Por defecto, los pedidos serán nuevos
+    PED_NUEVO: number;
 }

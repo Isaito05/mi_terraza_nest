@@ -1,13 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Pedido } from 'src/entities/pedido.entity';
+// import { PedidosGateway } from './pedidos.gateway';
 
 @Injectable()
 export class PedidoService {
     constructor(
         @InjectRepository(Pedido)
         private pedidoRepository: Repository<Pedido>,
+        // private readonly pedidosGateway: PedidosGateway
     ) { }
 
     async findAll(): Promise<Pedido[]> {
@@ -31,7 +33,29 @@ export class PedidoService {
         return this.pedidoRepository.findOneBy({ PED_ID });
     }
 
+    async updatePedido(PED_ID: number, PED_NUEVO: boolean): Promise<Pedido> {
+        const pedido = await this.pedidoRepository.findOne({ where: { PED_ID } });
+    
+        if (!pedido) {
+          throw new NotFoundException(`Pedido con ID ${PED_ID} no encontrado`);
+        }
+    
+        pedido.PED_NUEVO = PED_NUEVO ? 1 : 0;;
+        await this.pedidoRepository.save(pedido);
+
+        // this.pedidosGateway.server.emit('pedidoActualizado', pedido);
+        return pedido
+    }
+
     async remove(PED_ID: number): Promise<void> {
         await this.pedidoRepository.delete(PED_ID);
     }
+
+    async findPedidosByUserId(userId: number): Promise<Pedido[]> {
+        return this.pedidoRepository.find({
+            where: { rguUsuario: { RGU_ID: userId } }, // Asegúrate de que 'USUARIO_ID' sea el campo correcto
+            relations: ['rguUsuario'], // Incluye la relación del usuario
+        });
+    }
+    
 }
