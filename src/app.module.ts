@@ -16,6 +16,7 @@ import { AuthService } from './service/auth/auth.service';
 import { MailService } from './mail/mail.service';
 import { MailModule } from './mail/mail.module';
 import { UploadController } from './controller/upload/upload.controller';
+import { WebSocketModule } from './modules/websocket/websocket.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UploadController } from './controller/upload/upload.controller';
     ProdventaModule,
     AuthModule,
     MailModule,
+    WebSocketModule
   ],
   controllers: [ForgotPasswordController, UploadController, AppController],
   providers: [AppService, MailService],

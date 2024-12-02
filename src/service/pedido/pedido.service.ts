@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Pedido } from 'src/entities/pedido.entity';
-// import { PedidosGateway } from './pedidos.gateway';
+import { WebSocketService } from '../websocket/websocket.service';
 
 @Injectable()
 export class PedidoService {
     constructor(
         @InjectRepository(Pedido)
         private pedidoRepository: Repository<Pedido>,
-        // private readonly pedidosGateway: PedidosGateway
+        private readonly webSocketService: WebSocketService,
     ) { }
 
     async findAll(): Promise<Pedido[]> {
@@ -34,7 +34,7 @@ export class PedidoService {
     }
 
     async updatePedido(PED_ID: number, PED_NUEVO: boolean): Promise<Pedido> {
-        const pedido = await this.pedidoRepository.findOne({ where: { PED_ID } });
+        const pedido = await this.pedidoRepository.findOne({ where: { PED_ID }, relations: ['rguUsuario'], });
     
         if (!pedido) {
           throw new NotFoundException(`Pedido con ID ${PED_ID} no encontrado`);
@@ -43,7 +43,7 @@ export class PedidoService {
         pedido.PED_NUEVO = PED_NUEVO ? 1 : 0;;
         await this.pedidoRepository.save(pedido);
 
-        // this.pedidosGateway.server.emit('pedidoActualizado', pedido);
+        this.webSocketService.emit('pedidoActualizado', pedido);
         return pedido
     }
 
