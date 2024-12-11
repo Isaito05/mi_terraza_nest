@@ -17,6 +17,7 @@ import { MailService } from './mail/mail.service';
 import { MailModule } from './mail/mail.module';
 import { UploadController } from './controller/upload/upload.controller';
 import { WebSocketModule } from './modules/websocket/websocket.module';
+import { GoogleStrategy } from './strategies/google.strategy';
 
 @Module({
   imports: [
@@ -30,9 +31,9 @@ import { WebSocketModule } from './modules/websocket/websocket.module';
     ProdventaModule,
     AuthModule,
     MailModule,
-    WebSocketModule
+    WebSocketModule,
   ],
   controllers: [ForgotPasswordController, UploadController, AppController],
-  providers: [AppService, MailService],
+  providers: [AppService, MailService,GoogleStrategy],
 })
 export class AppModule {}

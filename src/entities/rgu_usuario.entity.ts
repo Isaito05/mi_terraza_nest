@@ -46,4 +46,7 @@ export class Usuario {
 
     @Column({ type: 'date' })
     RGU_FCH_REGISTRO: Date;
+
+    @Column({ default: false }) 
+    is_google_user: boolean;
 }

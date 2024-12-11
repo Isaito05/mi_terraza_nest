@@ -9,7 +9,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.strategy';
 import { MailModule } from 'src/mail/mail.module';
-
+import { GoogleStrategy } from 'src/strategies/google.strategy';
+import { OAuth2Client } from 'google-auth-library';
 @Module({
     imports: [
         MailModule,
@@ -26,6 +27,13 @@ import { MailModule } from 'src/mail/mail.module';
         }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy],
+    providers: [AuthService, JwtStrategy, GoogleStrategy,{
+        provide: OAuth2Client,
+        useFactory: () => {
+          return new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+        },
+      },
+    ],
+    
 })
 export class AuthModule {}

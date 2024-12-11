@@ -3,6 +3,7 @@ import { RguUsuarioService } from '../usuario/rgu_usuario.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { MailService } from 'src/mail/mail.service';
+import { OAuth2Client } from 'google-auth-library';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,8 @@ export class AuthService {
     private usuarioService: RguUsuarioService,
     private jwtService: JwtService,
     private readonly mailService: MailService,
-  ) { }
+    private readonly oauth2Client: OAuth2Client,
+  ) { this.oauth2Client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID); }
 
   async validarUsuario(email: string, pass: string): Promise<any> {
     const user = await this.usuarioService.findByEmail(email);
@@ -80,6 +82,22 @@ export class AuthService {
       return { message: 'Contraseña actualizada con éxito' };
     } catch (error) {
       throw new UnauthorizedException('Token inválido o expirado'); // Lanza un error adecuado
+    }
+  }
+
+  async verifyGoogleToken(idToken: string): Promise<any> {
+    try {
+      // Verifica el ID Token usando la librería de Google
+      const ticket = await this.oauth2Client.verifyIdToken({
+        idToken: idToken,
+        audience: process.env.GOOGLE_CLIENT_ID, // Tu client ID de Google
+      });
+
+      // Si el token es válido, devuelve la información del usuario
+      const payload = ticket.getPayload();
+      return payload; // Contiene información del usuario como email, nombre, etc.
+    } catch (error) {
+      throw new Error('Token inválido o expirado');
     }
   }
 }

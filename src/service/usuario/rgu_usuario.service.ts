@@ -74,7 +74,8 @@ export class RguUsuarioService {
         });
 
         if (!usuario) {
-            throw new NotFoundException('Usuario con ese correo no encontrado');
+            // throw new NotFoundException('Usuario con ese correo no encontrado');
+            return null;
         }
 
         return usuario;
