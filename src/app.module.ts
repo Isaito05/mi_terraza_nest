@@ -17,7 +17,11 @@ import { MailService } from './mail/mail.service';
 import { MailModule } from './mail/mail.module';
 import { UploadController } from './controller/upload/upload.controller';
 import { WebSocketModule } from './modules/websocket/websocket.module';
+import { FacturaController } from './controller/factura/factura.controller';
+import { FacturaService } from './service/factura/factura.service';
+import { FacturaModule } from './modules/factura/factura.module';
 import { GoogleStrategy } from './strategies/google.strategy';
+
 
 @Module({
   imports: [
@@ -32,6 +36,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
     AuthModule,
     MailModule,
     WebSocketModule,
+    FacturaModule
   ],
   controllers: [ForgotPasswordController, UploadController, AppController],
   providers: [AppService, MailService,GoogleStrategy],
