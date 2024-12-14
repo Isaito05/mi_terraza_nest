@@ -111,7 +111,7 @@ export class AuthController {
       apellido: existingUser.RGU_APELLIDOS,
       rol: existingUser.RGU_ROL,
       i_perfil: existingUser.RGU_IMG_PROFILE,
-      direccion: ""
+      direccion: existingUser.RGU_DIRECCION
     };
 
     const access_token = this.jwtService.sign(payload);
